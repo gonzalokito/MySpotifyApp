@@ -35,7 +35,7 @@ class SpotifyNetwork {
             .writeTimeout(90L, TimeUnit.SECONDS)
 
         //Create HTTP client
-        val accessToken = "BQDVUR7jZF0w_SmoECark_mwkGUlkclogPmj24IYzdoiYdp8-kS0jLAYEeWw_EhUgnrEvby4eDTM6RzQtJY"
+        val accessToken = "BQAsdidYvnyEkjoNyuGMX5CsjXMFoEay9MSp9OjJatqU7uJ8c8GVyKJnFU3gR059Le7eUtSSMVFXVjthLWs"
         builder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer $accessToken")
