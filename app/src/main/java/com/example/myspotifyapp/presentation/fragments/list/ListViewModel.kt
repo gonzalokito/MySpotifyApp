@@ -28,8 +28,8 @@ class ListViewModel(app: Application):AndroidViewModel(app) {
                 try {
                     state.postValue(BaseState.Loading())
 
-                    val albums = SpotifyRepository().getAllAlbums()
-                    state.postValue(BaseState.Normal(ListState(albums)))
+                    val songs = SpotifyRepository().getAllTracks()
+                    state.postValue(BaseState.Normal(ListState(songs)))
 
                 } catch (e: Exception) {
 

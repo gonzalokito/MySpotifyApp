@@ -15,11 +15,11 @@
             android:id="@+id/ivSong"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:contentDescription="@string/foto_album"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="@string/foto_album" />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tituloSong"
@@ -60,41 +60,43 @@
 
         <TextView
             android:id="@+id/itemSongArtist"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="@font/nunito"
-            android:text=""
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tituloSong2"
+            app:layout_constraintBottom_toTopOf="@+id/itemSongDuration"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.909"
             app:layout_constraintStart_toEndOf="@+id/tituloSong2"
-            app:layout_constraintTop_toTopOf="@+id/tituloSong2" />
+            app:layout_constraintTop_toTopOf="@+id/tituloSong2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/itemSongDuration"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
             android:fontFamily="@font/nunito"
-            android:text=""
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tituloSong3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tituloSong3"
-            app:layout_constraintTop_toTopOf="@+id/tituloSong3" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/itemSongArtist"
+            app:layout_constraintTop_toTopOf="@+id/tituloSong3"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/itemSongName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/nunito"
-            android:text=""
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tituloSong"
+            app:layout_constraintBottom_toTopOf="@+id/itemSongArtist"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tituloSong"
-            app:layout_constraintTop_toTopOf="@+id/tituloSong" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/itemSongArtist"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

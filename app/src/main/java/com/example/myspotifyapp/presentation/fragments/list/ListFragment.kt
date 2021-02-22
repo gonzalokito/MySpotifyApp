@@ -9,9 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myspotifyapp.R
 import com.example.myspotifyapp.base.BaseState
-import com.example.myspotifyapp.data.model.Album
+import java.io.Serializable
 import com.example.myspotifyapp.databinding.FragmentListBinding
 
 
@@ -38,7 +37,7 @@ class ListFragment : Fragment() {
                 }
 
                 is BaseState.Normal ->{
-                    updateToNormal(state.dataNormal as ListState)
+                    updateToNormal(state.dataNormal)
                 }
                 is BaseState.Loading ->
                     updateToLoading()
@@ -61,9 +60,9 @@ class ListFragment : Fragment() {
         }
 
 
-        binding.rvSpotifyList.apply {
+        binding.fragmentListRecyclerView.apply {
             adapter = mAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
             itemAnimator = DefaultItemAnimator()
         }
 
@@ -73,8 +72,8 @@ class ListFragment : Fragment() {
 
     }
 
-    private fun updateToNormal(dataNormal: ListState) {
-        mAdapter.updateList(dataNormal.albumList)
+    private fun updateToNormal(dataNormal: Serializable) {
+        mAdapter.updateList((dataNormal as ListState).trackList)
     }
 
     private fun updateToError(error: Throwable) {

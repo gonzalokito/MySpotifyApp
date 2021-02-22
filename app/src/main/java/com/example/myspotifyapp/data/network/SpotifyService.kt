@@ -1,13 +1,13 @@
 package com.example.myspotifyapp.data.network
 
-import com.example.myspotifyapp.data.model.ResponseAlbumListDataModel
+import com.example.myspotifyapp.data.model.ResponsePlayListDataModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface SpotifyService {
 
-    @GET("/v1/albums")
-    suspend fun getAllAlbums(@Query("ids") ids: String, @Query("market") market: String): ResponseAlbumListDataModel
+    @GET("/v1/playlists/1mLsrthzLLOvDJNJfQtgzw")
+    suspend fun getAllAlbums(@Query("market") market: String): ResponsePlayListDataModel
 
 }
