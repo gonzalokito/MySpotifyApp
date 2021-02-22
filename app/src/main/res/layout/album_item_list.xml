@@ -1,16 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragments.list.ListFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#8BC34A"
+        tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/ivSong"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:contentDescription="@string/foto_album" />
+
+        <TextView
+            android:id="@+id/tituloSong"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/titulo"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/ivSong"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tituloSong2"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/nunito"
+            android:text="@string/artista"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tituloSong3"
+            app:layout_constraintStart_toStartOf="@+id/tituloSong"
+            app:layout_constraintTop_toBottomOf="@+id/tituloSong" />
+
+        <TextView
+            android:id="@+id/tituloSong3"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunito"
+            android:text="@string/duracion"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tituloSong" />
+
+        <TextView
+            android:id="@+id/itemSongArtist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nunito"
+            android:text=""
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloSong2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tituloSong2"
+            app:layout_constraintTop_toTopOf="@+id/tituloSong2" />
+
+        <TextView
+            android:id="@+id/itemSongDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nunito"
+            android:text=""
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloSong3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tituloSong3"
+            app:layout_constraintTop_toTopOf="@+id/tituloSong3" />
+
+        <TextView
+            android:id="@+id/itemSongName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/nunito"
+            android:text=""
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tituloSong"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tituloSong"
+            app:layout_constraintTop_toTopOf="@+id/tituloSong" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,4 +2,9 @@
     <string name="app_name">MySpotifyApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="duracion">Duracion</string>
+    <string name="artista">Artista</string>
+    <string name="titulo">Titulo</string>
+    <string name="foto_album">foto_album</string>
+    <string name="activity_main_search_text_hint">Filtrar</string>
 </resources>
