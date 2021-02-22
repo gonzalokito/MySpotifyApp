@@ -1,7 +1,8 @@
-package com.example.myspotifyapp
+package com.example.myspotifyapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myspotifyapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
