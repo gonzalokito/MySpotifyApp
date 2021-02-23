@@ -25,10 +25,10 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentListBinding.inflate(inflater,container,false)
 
-
+        //Observer
         viewModel.getState().observe(viewLifecycleOwner,{state->
             when (state){
 
@@ -37,7 +37,7 @@ class ListFragment : Fragment() {
                 }
 
                 is BaseState.Normal ->{
-                    updateToNormal(state.dataNormal)
+                    updateToNormal(state.dataNormal as ListState)
                 }
                 is BaseState.Loading ->
                     updateToLoading()
@@ -55,8 +55,7 @@ class ListFragment : Fragment() {
     private fun setupView() {
 
         mAdapter = ListAdapter(listOf(),requireActivity()) { item ->
-            //findNavController().navigate(R.id.action_listFragment_to_detailFragment)
-            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment())
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(item.track.id))
         }
 
 
@@ -72,8 +71,8 @@ class ListFragment : Fragment() {
 
     }
 
-    private fun updateToNormal(dataNormal: Serializable) {
-        mAdapter.updateList((dataNormal as ListState).trackList)
+    private fun updateToNormal(dataNormal: ListState) {
+        mAdapter.updateList((dataNormal).trackList)
     }
 
     private fun updateToError(error: Throwable) {

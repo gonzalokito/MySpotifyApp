@@ -2,6 +2,7 @@ package com.example.myspotifyapp.data.network
 
 import com.example.myspotifyapp.BuildConfig
 import com.example.myspotifyapp.data.model.ResponsePlayListDataModel
+import com.example.myspotifyapp.data.model.ResponseSongDataModel
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -22,10 +23,6 @@ class SpotifyNetwork {
 
         service = retrofit.create(SpotifyService::class.java)
     }
-    suspend fun getAllTracks(market:String): ResponsePlayListDataModel {
-        loadRetrofit()
-        return service.getAllAlbums(market)
-    }
 
     private fun createHttpClient(): OkHttpClient {
 
@@ -35,7 +32,7 @@ class SpotifyNetwork {
             .writeTimeout(90L, TimeUnit.SECONDS)
 
         //Create HTTP client
-        val accessToken = "BQAE2g62_NTXpoIajRHPozDd6gzXtY2AheXBNsr-W52SNSsc3SExpicKyFWgTF4Rr9FKRB7C1K_OALl1SLo"
+        val accessToken = "BQBcEBgD4P-Lp_s-2Dew15qPQ25HvkfTiGBOZjJB5g6hX2F85Eo02fO-oi0uAQVD0oi1uaeWLKcfGVTxr9k"
         builder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer $accessToken")
@@ -52,5 +49,14 @@ class SpotifyNetwork {
 
 
         return builder.build()
+    }
+
+    suspend fun getAllTracks(market:String): ResponsePlayListDataModel {
+        loadRetrofit()
+        return service.getAllAlbums(market)
+    }
+    suspend fun getSong(id:String): ResponseSongDataModel {
+        loadRetrofit()
+        return service.getSong(id)
     }
 }
