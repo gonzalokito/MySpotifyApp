@@ -17,5 +17,10 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.myspotifyapp.presentation.fragments.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="id_track"
+            app:argType="string" />
+    </fragment>
 </navigation>

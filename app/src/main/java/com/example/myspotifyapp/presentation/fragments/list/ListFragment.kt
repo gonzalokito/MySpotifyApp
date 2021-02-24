@@ -9,9 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myspotifyapp.R
 import com.example.myspotifyapp.base.BaseState
-import com.example.myspotifyapp.data.model.Album
+import java.io.Serializable
 import com.example.myspotifyapp.databinding.FragmentListBinding
 
 
@@ -26,10 +25,10 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentListBinding.inflate(inflater,container,false)
 
-
+        //Observer
         viewModel.getState().observe(viewLifecycleOwner,{state->
             when (state){
 
@@ -56,25 +55,25 @@ class ListFragment : Fragment() {
     private fun setupView() {
 
         mAdapter = ListAdapter(listOf(),requireActivity()) { item ->
-            //findNavController().navigate(R.id.action_listFragment_to_detailFragment)
-            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment())
+            findNavController().navigate(ListFragmentDirections.actionListFragmentToDetailFragment(item.track.id))
         }
 
 
-        binding.rvSpotifyList.apply {
+        binding.fragmentListRecyclerView.apply {
             adapter = mAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
             itemAnimator = DefaultItemAnimator()
         }
 
     }
 
     private fun updateToLoading() {
-
+        binding.progressBar.visibility =  View.VISIBLE
     }
 
     private fun updateToNormal(dataNormal: ListState) {
-        mAdapter.updateList(dataNormal.albumList)
+        mAdapter.updateList((dataNormal).trackList)
+        binding.progressBar.visibility =  View.GONE
     }
 
     private fun updateToError(error: Throwable) {
