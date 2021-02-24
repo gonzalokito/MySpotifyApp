@@ -68,11 +68,12 @@ class ListFragment : Fragment() {
     }
 
     private fun updateToLoading() {
-
+        binding.progressBar.visibility =  View.VISIBLE
     }
 
     private fun updateToNormal(dataNormal: ListState) {
         mAdapter.updateList((dataNormal).trackList)
+        binding.progressBar.visibility =  View.GONE
     }
 
     private fun updateToError(error: Throwable) {

@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.example.myspotifyapp.R
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.myspotifyapp.base.BaseState
 import com.example.myspotifyapp.databinding.FragmentDetailBinding
 
@@ -17,6 +19,7 @@ class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
+    lateinit var mAdapter: DetailArtistAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,24 +43,53 @@ class DetailFragment : Fragment() {
             }
 
         })
-
         setupView()
-
         viewModel.requestInformation(args.idTrack)
 
         return binding.root
     }
 
     private fun setupView() {
-        TODO("Not yet implemented")
+
+        mAdapter = DetailArtistAdapter(listOf())
+        binding.recyclerViewArtist.apply {
+            adapter = mAdapter
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
+            itemAnimator = DefaultItemAnimator()
+        }
+
+
     }
 
     private fun updateToLoading() {
-
+        binding.progressBarDetail.visibility =  View.VISIBLE
     }
 
     private fun updateToNormal(dataNormal: SongState) {
+        dataNormal.track?.let{ song->
 
+            var url = song.album.images[0].url
+            Glide.with(requireActivity()).load(url).into(binding.imageView)
+
+            binding.textViewTrackNumber.text="Nº "+ song.track_number
+            binding.textViewSong.text= song.name
+            binding.textViewAlbum.text=song.album.name
+
+            var nameArtists: MutableList<String> = mutableListOf()
+            song.artists.forEach{ artist ->
+                nameArtists.add(artist.name)
+            }
+            mAdapter.updateList(nameArtists)
+
+            if (song.available_markets.contains("ES")) {
+                binding.textView2.text = "Disponible en España"
+            }
+
+
+            binding.textView4.text="Popularidad"+song.popularity.toString()
+
+        }
+        binding.progressBarDetail.visibility =  View.GONE
     }
 
     private fun updateToError(error: Throwable) {

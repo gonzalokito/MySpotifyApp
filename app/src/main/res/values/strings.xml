@@ -7,4 +7,5 @@
     <string name="titulo">Title</string>
     <string name="foto_album">foto_album</string>
     <string name="activity_main_search_text_hint">Filtrar</string>
+    <string name="example_artistas">Artistas</string>
 </resources>
