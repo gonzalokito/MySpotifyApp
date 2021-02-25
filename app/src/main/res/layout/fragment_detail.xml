@@ -12,20 +12,20 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/textViewSong"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:textSize="25sp"
             android:textStyle="bold"
@@ -49,16 +49,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewDispoinibilidad"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:gravity="center"
-            tools:text="TextView"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewAlbum" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewAlbum"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/textViewAlbum"
@@ -74,42 +74,62 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewSong" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewPopularity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:text="TextView"
+            android:layout_marginStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDispoinibilidad"
+            tools:text="TextView" />
+
+        <TextView
+            android:id="@+id/textViewArtistTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_artist"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerViewArtist"
+            app:layout_constraintStart_toStartOf="@+id/recyclerViewArtist"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPopularity" />
+
+        <TextView
+            android:id="@+id/textViewMarketTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/title_market"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/recyclerViewMarket"
+            app:layout_constraintStart_toStartOf="@+id/recyclerViewMarket"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPopularity" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewArtist"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/recyclerView2"
+            app:layout_constraintEnd_toStartOf="@+id/recyclerViewMarket"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewArtistTitle"
+            app:layout_constraintVertical_bias="0.0"
             tools:listitem="@layout/artist_item_list">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView2"
+            android:id="@+id/recyclerViewMarket"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/recyclerViewArtist"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMarketTitle"
             app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/artist_item_list" />
 

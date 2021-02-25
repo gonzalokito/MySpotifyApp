@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.topAppBar.setupWithNavController(navController, appBarConfiguration)
 
+        //viewModel.requestInformation()
         setContentView(binding.root)
         }
 }
