@@ -6,7 +6,6 @@ import com.example.myspotifyapp.base.BaseState
 import com.example.myspotifyapp.base.NetworkManager
 import com.example.myspotifyapp.base.NoInternetConnectivity
 import com.example.myspotifyapp.data.SpotifyRepository
-import com.example.myspotifyapp.presentation.fragments.list.ListState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.myspotifyapp.data.model.Album
 import com.example.myspotifyapp.data.model.Item
 import com.example.myspotifyapp.databinding.AlbumItemListBinding
 
@@ -27,6 +26,9 @@ class ListAdapter(private var myList: List<Item>, private var context: Context, 
         holder.binding.itemSongArtist.text = item.track.artists[0].name ?: "N/A"
         var durationSongMinutos=((item.track.duration_ms / 1000) / 60).toString()
         var durationSongSegundos=((item.track.duration_ms / 1000) % 60).toString()
+        if (durationSongSegundos.length==1){
+            durationSongSegundos= "0$durationSongSegundos"
+        }
         holder.binding.itemSongDuration.text = durationSongMinutos + ":" +durationSongSegundos ?: "N/A"
 
         var url = item.track.album.images[0].url

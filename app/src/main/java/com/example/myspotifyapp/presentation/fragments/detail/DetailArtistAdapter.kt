@@ -1,13 +1,8 @@
 package com.example.myspotifyapp.presentation.fragments.detail
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.myspotifyapp.data.model.Album
-import com.example.myspotifyapp.data.model.Item
-import com.example.myspotifyapp.databinding.AlbumItemListBinding
 import com.example.myspotifyapp.databinding.ArtistItemListBinding
 
 class DetailArtistAdapter(private var myList: List<String>): RecyclerView.Adapter<DetailArtistAdapter.ViewHolder>() {

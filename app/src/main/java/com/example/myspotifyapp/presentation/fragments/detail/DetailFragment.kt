@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.myspotifyapp.R
 import com.example.myspotifyapp.base.BaseState
 import com.example.myspotifyapp.databinding.FragmentDetailBinding
 
@@ -19,12 +20,10 @@ class DetailFragment : Fragment() {
     lateinit var binding: FragmentDetailBinding
     private val viewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
-    lateinit var mAdapter: DetailArtistAdapter
+    private lateinit var mAdapter: DetailArtistAdapter
+    private lateinit var mAdapter2: DetailArtistAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View {
 
         binding = FragmentDetailBinding.inflate(layoutInflater,container,false)
 
@@ -57,6 +56,12 @@ class DetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
             itemAnimator = DefaultItemAnimator()
         }
+        mAdapter2 = DetailArtistAdapter(listOf())
+        binding.recyclerViewMarket.apply {
+            adapter = mAdapter2
+            layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
+            itemAnimator = DefaultItemAnimator()
+        }
 
 
     }
@@ -68,25 +73,30 @@ class DetailFragment : Fragment() {
     private fun updateToNormal(dataNormal: SongState) {
         dataNormal.track?.let{ song->
 
-            var url = song.album.images[0].url
+            val url = song.album.images[0].url
             Glide.with(requireActivity()).load(url).into(binding.imageView)
 
             binding.textViewTrackNumber.text="Nº "+ song.track_number
             binding.textViewSong.text= song.name
             binding.textViewAlbum.text=song.album.name
 
-            var nameArtists: MutableList<String> = mutableListOf()
+            val nameArtists: MutableList<String> = mutableListOf()
             song.artists.forEach{ artist ->
                 nameArtists.add(artist.name)
             }
+            val nameMarkets: MutableList<String> = mutableListOf()
+            song.available_markets.forEach{ market ->
+                nameMarkets.add(market)
+            }
             mAdapter.updateList(nameArtists)
+            mAdapter2.updateList(nameMarkets)
 
             if (song.available_markets.contains("ES")) {
-                binding.textView2.text = "Disponible en España"
+                binding.textViewDispoinibilidad.text = getString(R.string.spain_disponiblility)
             }
 
 
-            binding.textView4.text="Popularidad"+song.popularity.toString()
+            binding.textViewPopularity.text= getString(R.string.title_popularity) +song.popularity.toString()
 
         }
         binding.progressBarDetail.visibility =  View.GONE
