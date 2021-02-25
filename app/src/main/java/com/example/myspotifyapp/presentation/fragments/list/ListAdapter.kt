@@ -26,6 +26,9 @@ class ListAdapter(private var myList: List<Item>, private var context: Context, 
         holder.binding.itemSongArtist.text = item.track.artists[0].name ?: "N/A"
         var durationSongMinutos=((item.track.duration_ms / 1000) / 60).toString()
         var durationSongSegundos=((item.track.duration_ms / 1000) % 60).toString()
+        if (durationSongSegundos.length==1){
+            durationSongSegundos= "0$durationSongSegundos"
+        }
         holder.binding.itemSongDuration.text = durationSongMinutos + ":" +durationSongSegundos ?: "N/A"
 
         var url = item.track.album.images[0].url
