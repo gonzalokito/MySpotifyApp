@@ -7,4 +7,4 @@ data class SongState(
 
         val track: ResponseSongDataModel? = null
 
-):Serializable
+) : Serializable

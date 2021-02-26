@@ -12,7 +12,7 @@ import com.example.myspotifyapp.data.SpotifyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListViewModel(app: Application):AndroidViewModel(app) {
+class ListViewModel(app: Application) : AndroidViewModel(app) {
 
     private val state = MutableLiveData<BaseState>()
     fun getState(): LiveData<BaseState> = state

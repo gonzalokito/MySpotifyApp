@@ -7,4 +7,4 @@ data class ListState(
 
         val trackList: List<Item> = listOf()
 
-):Serializable
+) : Serializable

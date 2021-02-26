@@ -10,13 +10,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class DetailViewModel(app: Application): AndroidViewModel(app) {
+class DetailViewModel(app: Application) : AndroidViewModel(app) {
 
     private val state = MutableLiveData<BaseState>()
     fun getState(): LiveData<BaseState> = state
 
 
-    fun requestInformation(id:String) {
+    fun requestInformation(id: String) {
         val hasInternet: Boolean = NetworkManager().isNetworkAvailable(getApplication())
 
         if (hasInternet) {
