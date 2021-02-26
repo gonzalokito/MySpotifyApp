@@ -9,14 +9,11 @@ class SpotifyRepository {
 
 
     suspend fun getAllTracks():List<Item> {
-        var tracksList= SpotifyNetwork().getAllTracks("ES",getToken())
+        var tracksList= SpotifyNetwork().getAllTracks("ES")
         return tracksList.tracks.items
     }
 
     suspend fun getSong(id: String):ResponseSongDataModel {
-        return SpotifyNetwork().getSong(id,getToken())
-    }
-    private suspend fun getToken():String {
-        return TokenNetwork().getToken("client_credentials").access_token
+        return SpotifyNetwork().getSong(id)
     }
 }

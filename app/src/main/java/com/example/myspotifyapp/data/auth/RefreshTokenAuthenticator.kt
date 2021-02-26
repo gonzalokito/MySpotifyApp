@@ -1,4 +1,4 @@
-/*package com.example.myspotifyapp.data.auth
+package com.example.myspotifyapp.data.auth
 
 import com.example.myspotifyapp.data.network.token.TokenService
 import okhttp3.Authenticator
@@ -33,4 +33,4 @@ class RefreshTokenAuthenticator: Authenticator {
         return ""
     }
 
-}*/
+}

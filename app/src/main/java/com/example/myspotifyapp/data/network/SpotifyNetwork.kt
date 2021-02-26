@@ -1,9 +1,11 @@
 package com.example.myspotifyapp.data.network
 
 import com.example.myspotifyapp.BuildConfig
+import com.example.myspotifyapp.data.auth.RefreshTokenAuthenticator
 import com.example.myspotifyapp.data.model.ResponsePlayListDataModel
 import com.example.myspotifyapp.data.model.ResponseSongDataModel
-import okhttp3.OkHttpClient
+import com.example.myspotifyapp.data.network.token.TokenNetwork
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -13,19 +15,18 @@ import java.util.concurrent.TimeUnit
 class SpotifyNetwork {
 
     private lateinit var service: SpotifyService
-    private lateinit var mainToken:String
 
-    private fun loadRetrofit(){
+    private fun loadRetrofit(token: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.spotify.com")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(createHttpClient())
+            .client(createHttpClient(token))
             .build()
 
         service = retrofit.create(SpotifyService::class.java)
     }
 
-    private fun createHttpClient(): OkHttpClient {
+    private fun createHttpClient(token: String): OkHttpClient {
 
         val builder = OkHttpClient.Builder()
             .connectTimeout(90L, TimeUnit.SECONDS)
@@ -36,11 +37,10 @@ class SpotifyNetwork {
 
         builder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer $mainToken")
+                .addHeader("Authorization", "Bearer $token")
                 .build()
             chain.proceed(request)
-        }
-
+            }
 
         // Logger Interceptor
         val loggerInterceptor = HttpLoggingInterceptor()
@@ -48,22 +48,24 @@ class SpotifyNetwork {
         loggerInterceptor.level = if(BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         builder.addInterceptor(loggerInterceptor)
 
-        //builder.authenticator(RefreshTokenAuthenticator())
-        //        .connectTimeout(90L, TimeUnit.SECONDS)
-        //        .followRedirects(false)
-        //        .followSslRedirects(false)
+        builder.authenticator(RefreshTokenAuthenticator())
+                .connectTimeout(90L, TimeUnit.SECONDS)
+                .followRedirects(false)
+                .followSslRedirects(false)
 
         return builder.build()
     }
 
-    suspend fun getAllTracks(market:String,token: String): ResponsePlayListDataModel {
-        mainToken=token
-        loadRetrofit()
+    suspend fun getAllTracks(market:String): ResponsePlayListDataModel {
+        val token = TokenNetwork().getToken("client_credentials").access_token
+        loadRetrofit(token)
         return service.getAllAlbums(market)
     }
-    suspend fun getSong(id:String,token: String): ResponseSongDataModel {
-        mainToken=token
-        loadRetrofit()
+    suspend fun getSong(id:String): ResponseSongDataModel {
+        val token = TokenNetwork().getToken("client_credentials").access_token
+        loadRetrofit(token)
         return service.getSong(id)
     }
 }
+
+
