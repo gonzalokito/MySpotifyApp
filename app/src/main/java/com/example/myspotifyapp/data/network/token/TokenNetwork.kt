@@ -12,15 +12,14 @@ import java.util.concurrent.TimeUnit
 
 class TokenNetwork {
 
-
     private lateinit var service: TokenService
 
-    private fun loadRetrofit(){
+    private fun loadRetrofit() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://accounts.spotify.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(createHttpClient())
-            .build()
+                .baseUrl("https://accounts.spotify.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(createHttpClient())
+                .build()
 
         service = retrofit.create(TokenService::class.java)
     }
@@ -28,16 +27,16 @@ class TokenNetwork {
     private fun createHttpClient(): OkHttpClient {
 
         val builder = OkHttpClient.Builder()
-            .connectTimeout(90L, TimeUnit.SECONDS)
-            .readTimeout(90L, TimeUnit.SECONDS)
-            .writeTimeout(90L, TimeUnit.SECONDS)
+                .connectTimeout(90L, TimeUnit.SECONDS)
+                .readTimeout(90L, TimeUnit.SECONDS)
+                .writeTimeout(90L, TimeUnit.SECONDS)
 
         //Create HTTP client
         val encodedString: String = Credentials.basic(BuildConfig.PUBLIC_KEY, BuildConfig.PRIVATE_KEY)
         builder.addInterceptor { chain ->
             val request = chain.request().newBuilder()
-                .addHeader("Authorization", encodedString)
-                .build()
+                    .addHeader("Authorization", encodedString)
+                    .build()
             chain.proceed(request)
         }
 
@@ -45,14 +44,14 @@ class TokenNetwork {
         // Logger Interceptor
         val loggerInterceptor = HttpLoggingInterceptor()
         //Imprime los logs en el logCat si el Build Variant esta en Debug
-        loggerInterceptor.level = if(BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        loggerInterceptor.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         builder.addInterceptor(loggerInterceptor)
 
 
         return builder.build()
     }
 
-    suspend fun getToken(id:String): ResponseTokenDataModel {
+    suspend fun getToken(id: String): ResponseTokenDataModel {
         loadRetrofit()
         return service.getToken(id)
     }

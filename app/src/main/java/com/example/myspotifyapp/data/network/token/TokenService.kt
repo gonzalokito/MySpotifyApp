@@ -9,8 +9,4 @@ interface TokenService {
     @POST("/api/token")
     suspend fun getToken(@Field("grant_type") grant_type: String): ResponseTokenDataModel
 
-   // @FormUrlEncoded
-   // @POST("/api/token")
-   // fun refreshToken(@Field("grant_type") grant_type: String): Call<ResponseTokenDataModel>
-
 }

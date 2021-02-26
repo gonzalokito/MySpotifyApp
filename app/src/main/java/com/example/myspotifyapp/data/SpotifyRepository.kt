@@ -8,15 +8,16 @@ import com.example.myspotifyapp.data.network.token.TokenNetwork
 class SpotifyRepository {
 
 
-    suspend fun getAllTracks():List<Item> {
-        var tracksList= SpotifyNetwork().getAllTracks("ES",getToken())
+    suspend fun getAllTracks(): List<Item> {
+        val tracksList = SpotifyNetwork().getAllTracks("ES", getToken())
         return tracksList.tracks.items
     }
 
-    suspend fun getSong(id: String):ResponseSongDataModel {
-        return SpotifyNetwork().getSong(id,getToken())
+    suspend fun getSong(id: String): ResponseSongDataModel {
+        return SpotifyNetwork().getSong(id, getToken())
     }
-    private suspend fun getToken():String {
+
+    private suspend fun getToken(): String {
         return TokenNetwork().getToken("client_credentials").access_token
     }
 }
